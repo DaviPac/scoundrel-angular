@@ -1,0 +1,13 @@
+<button
+  type="button"
+  class="btn"
+  [class]="'btn--' + variant() + ' btn--' + size()"
+  [disabled]="disabled()"
+  [title]="hint()"
+  (click)="pressed.emit()"
+>
+  <ng-content />
+  @if (subLabel()) {
+    <span class="btn__sub">{{ subLabel() }}</span>
+  }
+</button>

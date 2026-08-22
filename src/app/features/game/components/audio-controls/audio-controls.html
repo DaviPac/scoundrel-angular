@@ -1,0 +1,20 @@
+<div class="audio-row" [class.audio-row--compact]="compact()">
+  <app-retro-button
+    variant="panel"
+    [size]="compact() ? 'sm' : 'md'"
+    [class.muted]="!audio.musicOn()"
+    hint="Ligar/desligar música"
+    (pressed)="toggleMusic()"
+  >
+    {{ compact() ? '♪' : audio.musicOn() ? '♪ MÚSICA' : '♪ MÚSICA OFF' }}
+  </app-retro-button>
+  <app-retro-button
+    variant="panel"
+    [size]="compact() ? 'sm' : 'md'"
+    [class.muted]="!audio.sfxOn()"
+    hint="Ligar/desligar efeitos"
+    (pressed)="toggleSfx()"
+  >
+    {{ compact() ? (audio.sfxOn() ? '🔊' : '🔇') : audio.sfxOn() ? '🔊 SONS' : '🔇 SONS OFF' }}
+  </app-retro-button>
+</div>

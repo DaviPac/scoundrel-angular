@@ -1,0 +1,23 @@
+// Redemoinho de fundo, bem sutil, à la Balatro
+.bg-swirl {
+  position: fixed;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.05) 40deg,
+    transparent 90deg,
+    rgba(0, 0, 0, 0.08) 140deg,
+    transparent 200deg,
+    rgba(255, 255, 255, 0.04) 260deg,
+    transparent 320deg
+  );
+  animation: swirl 60s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes swirl {
+  to {
+    transform: rotate(360deg);
+  }
+}

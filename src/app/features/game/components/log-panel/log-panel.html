@@ -1,0 +1,8 @@
+<div class="panel">
+  <div class="panel-label">REGISTRO</div>
+  <div class="log">
+    @for (entry of entries(); track $index) {
+      <div class="log__entry" [class]="'log__entry--' + entry.kind">{{ entry.text }}</div>
+    }
+  </div>
+</div>

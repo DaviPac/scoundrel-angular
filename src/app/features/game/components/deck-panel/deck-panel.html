@@ -1,0 +1,17 @@
+<div class="panel">
+  <div class="deck-row">
+    <div class="deck-stat">
+      <div class="panel-label">BARALHO</div>
+      <div class="deck-pile">
+        @if (deckCount() > 0) {
+          <app-playing-card variant="back" [scale]="0.9" />
+        }
+      </div>
+      <div class="deck-count">{{ deckCount() }}</div>
+    </div>
+    <div class="deck-stat">
+      <div class="panel-label">SALA</div>
+      <div class="room-number">{{ roomNumber() }}</div>
+    </div>
+  </div>
+</div>

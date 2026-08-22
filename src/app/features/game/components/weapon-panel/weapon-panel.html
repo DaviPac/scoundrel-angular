@@ -1,0 +1,25 @@
+<div class="panel" [class.panel--compact]="compact()">
+  @if (!compact()) {
+    <div class="panel-label">ARMA</div>
+  }
+  <div class="weapon-display" [class.weapon-display--compact]="compact()">
+    @if (weapon(); as w) {
+      <div class="weapon-pile">
+        <app-playing-card [card]="w.card" [scale]="cardScale()" />
+        @for (item of pile(); track item.id) {
+          <app-playing-card
+            class="weapon-pile__card"
+            [card]="item.card"
+            [scale]="cardScale()"
+            [style.transform]="
+              'translate(' + item.offsetX + 'px, ' + item.offsetY + 'px) rotate(' + item.rotation + 'deg)'
+            "
+          />
+        }
+      </div>
+    } @else {
+      <div class="weapon-empty">{{ compact() ? 'mãos' : 'mãos limpas' }}</div>
+    }
+  </div>
+  <div class="weapon-info" [class.weapon-info--compact]="compact()">{{ info() }}</div>
+</div>

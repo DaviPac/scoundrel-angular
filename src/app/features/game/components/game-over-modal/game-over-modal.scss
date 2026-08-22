@@ -1,0 +1,24 @@
+@use 'variables' as v;
+
+.title {
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+
+  &--win {
+    color: v.$gold;
+    text-shadow: 3px 3px 0 v.$red-dark;
+    font-size: 40px;
+  }
+
+  &--lose {
+    color: v.$red;
+    font-size: 36px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.message {
+  font-size: 16px;
+  color: v.$muted-text;
+  margin-bottom: 18px;
+}

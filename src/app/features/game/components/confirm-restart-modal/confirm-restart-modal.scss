@@ -1,0 +1,21 @@
+@use 'variables' as v;
+
+.title {
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.message {
+  font-size: 16px;
+  color: v.$muted-text;
+  margin-bottom: 18px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 240px;
+}

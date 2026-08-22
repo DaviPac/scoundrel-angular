@@ -1,0 +1,17 @@
+<div class="room-hint">{{ hintText() }}</div>
+<div class="room" [class.room--dense]="dense()">
+  @for (slot of slots(); track slot.card?.id ?? 'empty-' + $index) {
+    <div class="card-slot" [style.width.px]="slotSize().width" [style.height.px]="slotSize().height">
+      @if (slot.card; as card) {
+        <app-playing-card
+          [card]="card"
+          [scale]="cardScale()"
+          [clickable]="clickable()"
+          [hint]="slot.hint"
+          [dealDelay]="slot.dealDelay"
+          (picked)="cardPicked.emit($index)"
+        />
+      }
+    </div>
+  }
+</div>

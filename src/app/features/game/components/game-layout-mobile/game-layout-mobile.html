@@ -1,0 +1,54 @@
+<header class="topbar">
+  <span class="topbar__title">SCOUNDREL</span>
+  <span class="topbar__meta">🂠 {{ deckCount() }} · Sala {{ roomNumber() }}</span>
+  <button type="button" class="topbar__menu-btn" aria-label="Abrir menu" (click)="pauseOpen.set(true)">
+    ☰
+  </button>
+</header>
+
+<div class="top-stats">
+  <app-hp-panel [compact]="true" [hp]="hp()" [maxHp]="maxHp()" [pulsing]="healPulsing()" />
+  <app-retro-button
+    class="run-btn"
+    variant="danger"
+    size="sm"
+    [disabled]="!canRun()"
+    [hint]="runDisabledReason()"
+    (pressed)="run.emit()"
+  >
+    CORRER
+  </app-retro-button>
+</div>
+
+<app-weapon-panel [compact]="true" [weapon]="weapon()" />
+
+<div class="felt">
+  <app-room
+    [slots]="slots()"
+    [clickable]="clickable()"
+    [hintText]="roomHint()"
+    [cardScale]="cardScale"
+    [dense]="true"
+    (cardPicked)="cardPicked.emit($event)"
+  />
+</div>
+
+@if (pauseOpen()) {
+  <app-modal-shell [dismissable]="true" (dismissed)="pauseOpen.set(false)">
+    <div class="pause-menu">
+      <h2 class="pause-menu__title">PAUSA</h2>
+
+      <app-audio-controls />
+
+      <app-retro-button variant="primary" size="sm" (pressed)="requestNewGame()">
+        NOVA PARTIDA
+      </app-retro-button>
+
+      <app-log-panel [entries]="logEntries()" />
+
+      <app-retro-button variant="neutral" size="sm" (pressed)="pauseOpen.set(false)">
+        CONTINUAR
+      </app-retro-button>
+    </div>
+  </app-modal-shell>
+}

@@ -1,0 +1,86 @@
+@use 'variables' as v;
+
+:host {
+  display: inline-block;
+}
+
+.card {
+  position: relative;
+  border-radius: 8px;
+  filter: drop-shadow(2px 5px 3px rgba(0, 0, 0, 0.35));
+
+  &__layer {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+  }
+
+  &--clickable {
+    cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &:hover {
+      transform: translateY(-12px) rotate(-2deg) scale(1.06);
+      z-index: 5;
+
+      .card__hint {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  }
+
+  &--dealing {
+    animation: deal 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  &__hint {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 7px;
+    background: v.$panel-dark;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition:
+      opacity 0.15s,
+      transform 0.15s;
+    pointer-events: none;
+    z-index: 6;
+
+    &--heal {
+      color: v.$green;
+    }
+
+    &--waste {
+      color: v.$gray;
+    }
+
+    &--equip {
+      color: v.$blue;
+    }
+
+    &--damage {
+      color: v.$red;
+    }
+  }
+}
+
+@keyframes deal {
+  from {
+    transform: translateY(-70px) rotate(-6deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}

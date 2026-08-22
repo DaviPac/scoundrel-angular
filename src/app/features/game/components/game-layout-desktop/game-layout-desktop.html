@@ -1,0 +1,36 @@
+<aside class="sidebar">
+  <div class="title-panel">
+    <h1>SCOUNDREL</h1>
+    <div class="title-panel__subtitle">dungeon de cartas</div>
+  </div>
+
+  <app-hp-panel [hp]="hp()" [maxHp]="maxHp()" [pulsing]="healPulsing()" />
+  <app-weapon-panel [weapon]="weapon()" />
+  <app-deck-panel [deckCount]="deckCount()" [roomNumber]="roomNumber()" />
+
+  <app-retro-button
+    variant="danger"
+    [disabled]="!canRun()"
+    [hint]="runDisabledReason()"
+    (pressed)="run.emit()"
+  >
+    CORRER
+  </app-retro-button>
+  <app-retro-button variant="primary" size="sm" (pressed)="newGameRequested.emit()">
+    NOVA PARTIDA
+  </app-retro-button>
+
+  <app-audio-controls />
+</aside>
+
+<main class="table">
+  <div class="table__felt">
+    <app-room
+      [slots]="slots()"
+      [clickable]="clickable()"
+      [hintText]="roomHint()"
+      (cardPicked)="cardPicked.emit($event)"
+    />
+  </div>
+  <app-log-panel [entries]="logEntries()" />
+</main>

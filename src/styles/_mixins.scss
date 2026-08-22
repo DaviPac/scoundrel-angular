@@ -1,0 +1,50 @@
+@use 'variables' as v;
+
+/// Painel chunky com sombra dura e brilho interno.
+@mixin panel {
+  background: v.$panel;
+  border-radius: 12px;
+  box-shadow:
+    0 5px 0 v.$panel-shadow,
+    inset 0 2px 0 rgba(255, 255, 255, 0.07);
+  padding: 12px 14px;
+}
+
+/// Rótulo dourado de painel (VIDA, ARMA, ...).
+@mixin panel-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: v.$gold;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/// Botão retrô com sombra dura na cor indicada.
+@mixin chunky-button($bg, $shadow) {
+  font-family: v.$font-stack;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.45);
+  background: $bg;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow:
+    0 5px 0 $shadow,
+    0 8px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s,
+    filter 0.15s;
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 $shadow;
+  }
+}

@@ -1,0 +1,26 @@
+@use 'variables' as v;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: v.$font-stack;
+  color: v.$ink;
+  background: radial-gradient(ellipse at 50% 30%, v.$felt-1 0%, v.$felt-2 75%);
+  overflow: hidden;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+}

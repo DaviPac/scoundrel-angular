@@ -1,0 +1,77 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.panel {
+  @include m.panel;
+
+  &--compact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+  }
+}
+
+.panel-label {
+  @include m.panel-label;
+
+  margin-bottom: 6px;
+}
+
+.weapon-display {
+  display: flex;
+  justify-content: center;
+  min-height: 110px;
+  align-items: center;
+  // Reserva espaço para a pilha "transbordar" por baixo da carta sem cobrir
+  // o texto de poder/desgaste logo abaixo (deve cobrir o deslocamento
+  // vertical máximo da pilha: CORNER_CLEARANCE_RATIO + PILE_SPREAD.full,
+  // ambos em weapon-panel.ts).
+  margin-bottom: 40px;
+
+  &--compact {
+    min-height: auto;
+    justify-content: flex-start;
+    // No mobile a arma e o texto ficam lado a lado (não empilhados), e o
+    // transbordo por cima do que vem depois do painel é o efeito desejado.
+    margin-bottom: 0;
+  }
+}
+
+.weapon-empty {
+  color: v.$gray;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+// A carta da arma fica em fluxo normal (define o tamanho da pilha); cada
+// monstro derrotado é posicionado por cima dela, na mesma origem, e só o
+// transform (rotação + deslocamento) os separa visualmente — por isso
+// "transbordam" livremente a borda do painel, sem precisar de mais espaço.
+.weapon-pile {
+  position: relative;
+  display: inline-block;
+
+  &__card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: brightness(0.92) drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.45));
+  }
+}
+
+.weapon-info {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 13px;
+  color: v.$gold;
+  min-height: 16px;
+
+  &--compact {
+    margin-top: 0;
+    text-align: left;
+    font-size: 13px;
+    min-height: 0;
+    line-height: 1.35;
+  }
+}

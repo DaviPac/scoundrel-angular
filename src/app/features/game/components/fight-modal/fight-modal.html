@@ -1,0 +1,20 @@
+<app-modal-shell [dismissable]="true" (dismissed)="cancelled.emit()">
+  <h2 class="title">Monstro {{ monster().label }}{{ monster().symbol }}</h2>
+  <div class="monster-card">
+    <app-playing-card [card]="monster()" [scale]="1.6" />
+  </div>
+  <div class="buttons">
+    <app-retro-button
+      variant="primary"
+      [disabled]="!weaponUsable()"
+      [subLabel]="weaponSub()"
+      (pressed)="weaponChosen.emit()"
+    >
+      {{ weaponLabel() }}
+    </app-retro-button>
+    <app-retro-button variant="danger" [subLabel]="'dano: ' + handsDamage()" (pressed)="handsChosen.emit()">
+      ✊ MÃOS LIMPAS
+    </app-retro-button>
+    <app-retro-button variant="neutral" size="sm" (pressed)="cancelled.emit()">VOLTAR</app-retro-button>
+  </div>
+</app-modal-shell>

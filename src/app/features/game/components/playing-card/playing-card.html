@@ -1,0 +1,17 @@
+<div
+  class="card"
+  [class.card--clickable]="clickable()"
+  [class.card--dealing]="dealDelay() !== null"
+  [style.width.px]="width()"
+  [style.height.px]="height()"
+  [style.animation-delay.ms]="dealDelay() ?? 0"
+  (click)="onClick()"
+>
+  <div class="card__layer" [style]="baseStyle()"></div>
+  @if (faceStyle(); as face) {
+    <div class="card__layer" [style]="face"></div>
+  }
+  @if (hint(); as h) {
+    <div class="card__hint" [class]="'card__hint--' + h.kind">{{ h.text }}</div>
+  }
+</div>

@@ -1,0 +1,56 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: block;
+}
+
+.btn {
+  width: 100%;
+
+  &--md {
+    font-size: 19px;
+    padding: 12px 16px;
+  }
+
+  &--sm {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  &--danger {
+    @include m.chunky-button(v.$red, v.$red-dark);
+  }
+
+  &--primary {
+    @include m.chunky-button(v.$blue, v.$blue-dark);
+  }
+
+  &--neutral {
+    @include m.chunky-button(v.$gray, v.$gray-dark);
+  }
+
+  &--panel {
+    @include m.chunky-button(v.$panel, v.$panel-shadow);
+    color: v.$gold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 8px 6px;
+  }
+
+  &:disabled {
+    background: v.$gray;
+    box-shadow: 0 5px 0 v.$gray-dark;
+    cursor: not-allowed;
+    filter: saturate(0.4);
+    opacity: 0.8;
+  }
+
+  &__sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+}

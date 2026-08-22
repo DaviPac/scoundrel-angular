@@ -1,0 +1,82 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: flex;
+  gap: 18px;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  // A pilha de monstros derrotados pode transbordar a borda do painel de
+  // arma; precisa de um contexto de empilhamento para não ficar escondida
+  // atrás do painel de baralho logo abaixo.
+  app-weapon-panel {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.title-panel {
+  @include m.panel;
+
+  h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: v.$ink;
+    text-shadow:
+      3px 3px 0 v.$red-dark,
+      5px 5px 0 rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+
+  &__subtitle {
+    text-align: center;
+    color: v.$gold;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+}
+
+.table {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+
+  &__felt {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 4px 14px rgba(0, 0, 0, 0.4),
+      inset 0 0 0 3px rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 0;
+  }
+}
+
+// Faixa "tablet": ainda é o layout de desktop, só empilha para caber.
+@media (max-width: 900px) {
+  :host {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}

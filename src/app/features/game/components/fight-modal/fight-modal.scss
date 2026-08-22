@@ -1,0 +1,19 @@
+.title {
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.monster-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 240px;
+}

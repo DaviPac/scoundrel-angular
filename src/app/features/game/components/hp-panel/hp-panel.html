@@ -1,0 +1,12 @@
+<div class="panel" [class.panel--compact]="compact()" [class.panel--pulse]="pulsing()">
+  @if (!compact()) {
+    <div class="panel-label">VIDA</div>
+  }
+  <div class="hp-row">
+    <div class="hp-value" [class.hp-value--compact]="compact()">{{ hp() }}</div>
+    <div class="hp-max">/ {{ maxHp() }}</div>
+  </div>
+  <div class="hp-bar" [class.hp-bar--compact]="compact()">
+    <div class="hp-bar__fill" [class.hp-bar__fill--low]="low()" [style.width.%]="percent()"></div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.panel {
+  @include m.panel;
+}
+
+.panel-label {
+  @include m.panel-label;
+
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.deck-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.deck-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.deck-pile {
+  display: flex;
+  justify-content: center;
+  min-height: 88px;
+}
+
+.deck-count {
+  font-size: 26px;
+  font-weight: 700;
+  color: v.$blue;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.room-number {
+  font-size: 40px;
+  font-weight: 700;
+  color: v.$gold;
+  text-shadow: 2px 2px 0 #000;
+  line-height: 1.9;
+}

@@ -1,0 +1,10 @@
+<app-modal-shell [dismissable]="true" (dismissed)="cancelled.emit()">
+  <h2 class="title">Abandonar a masmorra?</h2>
+  <p class="message">A partida atual será perdida.</p>
+  <div class="buttons">
+    <app-retro-button variant="danger" (pressed)="confirmed.emit()">SIM, RECOMEÇAR</app-retro-button>
+    <app-retro-button variant="neutral" size="sm" (pressed)="cancelled.emit()">
+      CONTINUAR JOGANDO
+    </app-retro-button>
+  </div>
+</app-modal-shell>

@@ -1,0 +1,23 @@
+@use 'variables' as v;
+
+.audio-row {
+  display: flex;
+  gap: 8px;
+
+  app-retro-button {
+    flex: 1;
+
+    &.muted {
+      filter: saturate(0.4);
+      opacity: 0.8;
+    }
+  }
+
+  &--compact {
+    gap: 6px;
+
+    app-retro-button {
+      flex: 0 0 auto;
+    }
+  }
+}

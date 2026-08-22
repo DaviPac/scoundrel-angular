@@ -1,0 +1,91 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: block;
+  height: 148px;
+}
+
+.panel {
+  @include m.panel;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-label {
+  @include m.panel-label;
+
+  margin-bottom: 6px;
+}
+
+.log {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-right: 6px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: v.$gray;
+    border-radius: 4px;
+  }
+
+  &__entry {
+    animation: log-in 0.25s backwards;
+
+    &--info {
+      color: v.$muted-text;
+    }
+
+    &--room {
+      color: v.$gold;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    &--run,
+    &--equip {
+      color: v.$blue;
+    }
+
+    &--heal {
+      color: v.$green;
+    }
+
+    &--waste {
+      color: v.$gray;
+      font-style: italic;
+    }
+
+    &--damage {
+      color: v.$red;
+    }
+
+    &--block {
+      color: #d8c86a;
+    }
+
+    &--win {
+      color: v.$gold;
+      font-weight: 700;
+    }
+
+    &--lose {
+      color: v.$red;
+      font-weight: 700;
+    }
+  }
+}
+
+@keyframes log-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}

@@ -1,0 +1,66 @@
+<div class="layout" [class.layout--shake]="shaking()">
+  @if (viewport.isMobile()) {
+    <app-game-layout-mobile
+      [hp]="engine.hp()"
+      [maxHp]="engine.maxHp"
+      [healPulsing]="healPulsing()"
+      [weapon]="engine.weapon()"
+      [deckCount]="engine.deckCount()"
+      [roomNumber]="engine.roomNumber()"
+      [canRun]="engine.canRun()"
+      [runDisabledReason]="runDisabledReason()"
+      [slots]="slots()"
+      [clickable]="!engine.over()"
+      [roomHint]="roomHint()"
+      [logEntries]="log.entries()"
+      (run)="onRun()"
+      (newGameRequested)="onNewGameClicked()"
+      (cardPicked)="onCardPicked($event)"
+    />
+  } @else {
+    <app-game-layout-desktop
+      [hp]="engine.hp()"
+      [maxHp]="engine.maxHp"
+      [healPulsing]="healPulsing()"
+      [weapon]="engine.weapon()"
+      [deckCount]="engine.deckCount()"
+      [roomNumber]="engine.roomNumber()"
+      [canRun]="engine.canRun()"
+      [runDisabledReason]="runDisabledReason()"
+      [slots]="slots()"
+      [clickable]="!engine.over()"
+      [roomHint]="roomHint()"
+      [logEntries]="log.entries()"
+      (run)="onRun()"
+      (newGameRequested)="onNewGameClicked()"
+      (cardPicked)="onCardPicked($event)"
+    />
+  }
+</div>
+
+@switch (modal()) {
+  @case ('fight') {
+    @if (fightTarget(); as target) {
+      <app-fight-modal
+        [monster]="target.card"
+        [weaponDamage]="fightPreview()!.weapon"
+        [handsDamage]="fightPreview()!.hands"
+        [weaponLastKill]="engine.weapon()?.kills?.at(-1)?.value ?? null"
+        (weaponChosen)="onFightChoice(true)"
+        (handsChosen)="onFightChoice(false)"
+        (cancelled)="cancelFight()"
+      />
+    }
+  }
+  @case ('confirm-restart') {
+    <app-confirm-restart-modal (confirmed)="restart()" (cancelled)="cancelFight()" />
+  }
+  @case ('game-over') {
+    <app-game-over-modal
+      [won]="engine.won()"
+      [hp]="engine.hp()"
+      [roomNumber]="engine.roomNumber()"
+      (restart)="restart()"
+    />
+  }
+}

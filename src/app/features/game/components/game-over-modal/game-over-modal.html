@@ -1,0 +1,7 @@
+<app-modal-shell>
+  <h2 class="title" [class.title--win]="won()" [class.title--lose]="!won()">
+    {{ won() ? 'VITÓRIA!' : 'FIM DE JOGO' }}
+  </h2>
+  <p class="message">{{ message() }}</p>
+  <app-retro-button variant="primary" (pressed)="restart.emit()">JOGAR DE NOVO</app-retro-button>
+</app-modal-shell>
